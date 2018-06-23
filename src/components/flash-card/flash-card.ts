@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 /**
  * Generated class for the FlashCardComponent component.
@@ -12,11 +12,10 @@ import { Component } from '@angular/core';
 })
 export class FlashCardComponent {
 
-  text: string;
+  @Input('isFlipped') flipCard: boolean;
 
   constructor() {
     console.log('Hello FlashCardComponent Component');
-    this.text = 'Hello World';
   }
 
 }
