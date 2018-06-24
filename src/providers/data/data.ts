@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import 'rxjs/add/operator/map';
+//import { Observable } from 'rxjs/observable';
 
 @Injectable()
 export class DataProvider {
@@ -19,7 +20,7 @@ export class DataProvider {
 
     return new Promise(resolve => {
       this.http.get('assets/data/questions.json').subscribe(data => {
-        this.data = data.questions;
+        this.data = data["questions"];
         resolve(this.data);
       });
     });
