@@ -8,40 +8,40 @@
 
 <ion-content>
   <ion-slides #slides>
-    <ion-slide>
+
+    <ion-slide class="start-slide">
+      <button ion-button color="primary" (click)="nextSlide()">Start!</button>
+    </ion-slide>
+
+    <ion-slide *ngFor="let question of questions; let i = index;">
       
-      <h3>Question 1</h3>
+      <h3>Question {{i+1}}</h3>
 
       <ion-item>
-        <flash-card [isFlipped]="flashCardFlipped">
-          <div class="flash-card-front">
-            <img src="assets/imgs/helicopter.png" />
-          </div>
-          <div class="flash-card-back">Helicopter</div>
+        <flash-card [isFlipped]="question.flashCardFlipped">
+          <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
+          <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
         </flash-card>
       </ion-item>
 
-      <h3>これはなに?</h3>
+      <h3>{{question.questionText}}</h3>
 
       <ion-list no-lines radio-group>
 
-        <ion-item>
-          <ion-label>1. ヘリコプター</ion-label>
-          <ion-radio (click)="selectAnswer()"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>2. トラック</ion-label>
-          <ion-radio (click)="selectAnswer()"></ion-radio>
-        </ion-item>
-
-        <ion-item>
-          <ion-label>3. ひこうき</ion-label>
-          <ion-radio (click)="selectAnswer()"></ion-radio>
+        <ion-item *ngFor="let answer of question.answers; let i = index">
+          <ion-label>{{i+1}}.{{answer.answer}} </ion-label>
+          <ion-radio (click)="selectAnswer(answer, question)" [checked]="answer.selected" [disabled]="hasAnswered"></ion-radio>
         </ion-item>
 
       </ion-list>
 
     </ion-slide>
+
+    <ion-slide>
+      <h2>スコア：{{score}}</h2>
+      <button (click)="restartQuiz()" ion-button full color="primary">ゲーム再チャレンジ
+      </button>
+    </ion-slide>
+
   </ion-slides>
 </ion-content>
