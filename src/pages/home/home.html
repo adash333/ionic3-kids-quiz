@@ -1,23 +1,16 @@
-<ion-header>
-  <ion-navbar color="primary">
-    <ion-title>
-      Ionic3 Kids Quiz
-    </ion-title>
-  </ion-navbar>
-</ion-header>
-
 <ion-content>
   <ion-slides #slides>
 
     <ion-slide class="start-slide">
+      <h3>Ionic3-kids-quiz</h3>
       <button ion-button color="primary" (click)="nextSlide()">Start!</button>
     </ion-slide>
 
     <ion-slide *ngFor="let question of questions; let i = index;">
       
       <h3>Question {{i+1}}</h3>
-
-      <ion-item>
+      
+      <ion-item no-lines>
         <flash-card [isFlipped]="question.flashCardFlipped">
           <div class="flash-card-front" [innerHTML]="question.flashCardFront"></div>
           <div class="flash-card-back" [innerHTML]="question.flashCardBack"></div>
